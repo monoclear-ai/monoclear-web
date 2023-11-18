@@ -15,13 +15,20 @@ import Script from "next/script";
 console.log("*********ENV***********")
 console.log(process.env.MAILCHIMP_API)
 
+// This default export is required in a new `pages/_app.js` file.
+/*
+  This is the main app file.
+  It is the first file that is loaded when the app is loaded.
+  It is used to wrap the entire app with the ChakraProvider and the SessionProvider.
+  Also performs Google Analytics setup.
+*/
 function MyApp ({ Component, pageProps: { session, ...pageProps} }: AppProps) {
   const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_MEASUREMENT_ID;
   return (
     <SessionProvider session={session}>
       <ChakraProvider>
         <Head>
-          <title>Monoclear.ai (beta)</title>
+          <title>Monoclear.ai (BETA)</title>
           <meta name='viewport' content='width=device-width, initial-scale=1' />
           <meta name='theme-color' content='#000000' />
         </Head>

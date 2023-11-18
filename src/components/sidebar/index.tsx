@@ -53,7 +53,7 @@ const Sidebar = (props: {
       <div className={`mx-[56px] mt-[40px] mb-[40px] flex items-center`}>
         <div className="mt-1 ml-1 h-10 font-poppins text-[26px] font-bold uppercase text-navy-700 dark:text-white">
           <img src={logo['src']} width={64} height={64} alt="logo"/>
-          모노클리어.ai
+          Monoclear.ai
         </div>
       </div>
       <div className="mt-[58px] mb-7 h-px bg-gray-300 dark:bg-white/30" />
@@ -76,7 +76,7 @@ const Sidebar = (props: {
               }
             </span>
             <p className="leading-1 ml-4 flex font-medium text-gray-600">
-              {session ? "로그아웃" : "로그인" }
+              {session ? "Logout" : "Login" }
             </p>
           </li>
         </div>

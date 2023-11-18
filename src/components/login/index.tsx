@@ -6,6 +6,12 @@ import { FcGoogle } from "react-icons/fc";
 
 import { signIn, signOut } from "next-auth/react"
 
+/*
+  Modal for Login.
+    
+  Input data will be sent to the backend and saved in the database.
+  Uses NextAuth.js for authentication.
+*/
 const LoginModal = (props: {
     isLoginOpen : boolean;
     onLoginOpen : () => void; 
@@ -35,7 +41,7 @@ const LoginModal = (props: {
         <ModalContent className="!z-[1002] !m-auto !w-max min-w-[350px] !max-w-[85%]">
             <ModalBody>
                 <Card extra={"px-[30px] pt-[35px] pb-[40px] max-w-[450px] flex flex-col !z-[1004]"}>
-                <h1 className="mb-[20px] mt-[20px] mx-[20px] text-2xl font-bold">로그인</h1>
+                <h1 className="mb-[20px] mt-[20px] mx-[20px] text-2xl font-bold">Login</h1>
                 <p className="flex flex-col mb-[0px] w-full items-center">
                     <div className="flex h-[40px] w-[340px] mt-[5px] justify-center rounded-full text-navy-700 dark:bg-navy-900 dark:text-white xl:w-[225px]">
                         <p className="pl-3 pr-2 text-l">
@@ -43,7 +49,7 @@ const LoginModal = (props: {
                                 className="px-4 py-2 border w-[190px] flex gap-2 border-slate-200 rounded-lg text-slate-700 hover:border-slate-400 hover:text-slate-900 hover:shadow transition duration-150"
                                 onClick={handleGoogleLogin}>
                                 <FcGoogle className="w-6 h-6 mr-[10px]"/>
-                                <span>Google 로그인</span>
+                                <span>Google Login</span>
                             </button>
                         </p>
                     </div>
@@ -51,7 +57,7 @@ const LoginModal = (props: {
                 <p className="mb-[20px]">
                     <div className="my-2 border-b text-center">
                     <div className="leading-none px-2 inline-block text-sm text-gray-600 tracking-wide font-medium bg-white transform translate-y-2">
-                        이메일 로그인
+                        Email Login
                     </div>
                     </div>
                 </p>
@@ -63,7 +69,7 @@ const LoginModal = (props: {
                     </p>
                     <input
                         type="text"
-                        placeholder="이메일"
+                        placeholder="Email"
                         className="block h-full w-full -mr-5 rounded-full bg-lightPrimary text-sm font-medium text-navy-700 outline-none placeholder:!text-gray-400 dark:bg-navy-900 dark:text-white dark:placeholder:!text-white sm:w-fit"
                         onChange={handleEmailInput}
                     />
@@ -74,7 +80,7 @@ const LoginModal = (props: {
                     <button
                         onClick={handleMagicLink} 
                         className="linear text-navy-700 rounded-xl border-2 border-gray-100 bg-gray-100 px-5 py-3 text-base font-medium transition duration-200 hover:bg-gray-200 active:bg-gray-300 dark:bg-white/10 dark:text-white dark:hover:bg-white/20 dark:active:bg-white/30">
-                        매직 링크
+                        Magic Link
                     </button>
                 </div>
                 </Card>

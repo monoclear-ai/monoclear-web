@@ -1,3 +1,8 @@
+/*
+  Utilities for the frontend.
+*/
+
+// Check if a string is parseable as JSON.
 export class JSONChecker{
     static isJSON(str: string): boolean {
         try {
@@ -9,6 +14,7 @@ export class JSONChecker{
     }
 }
 
+// Format a number to a string with a given number of digits.
 export class NumberFormatter{
     static format(number: number, digits=1): string {
         if (number === null || number === undefined) {
@@ -18,7 +24,7 @@ export class NumberFormatter{
     }
 }
 
-// Keeps the order of items.
+// Remove duplicates while keeping the order of items.
 export class Deduplicator{
     static deduplicate(array: Array<any>): Array<any> {
         if (array === null || array === undefined) {
@@ -31,7 +37,6 @@ export class Deduplicator{
 }
 
 // TODO : Default Dict
-
 enum Color {
   blue = "#4318FF",
   green = "#6AD2FF",
@@ -57,13 +62,14 @@ enum Color {
   beige = "#F5F5DC",
 }
 
+// Subscribe to email list.
 export class EmailSubscriber{
     static subscribe(email: string, name: string="DEFAULT"): boolean {
         if (email === null || email === undefined) {
             return false;
         }
         const payload = {}
-        fetch("https://www.website.com/backend/email/" + email + "/signup", {
+        fetch(`${process.env.NEXT_PUBLIC_ENDPOINT_URL}/backend/email/${email}/signup`, {
             method: 'POST',
             body: JSON.stringify(payload),
             headers: {
@@ -80,13 +86,15 @@ export class EmailSubscriber{
     }
 }
 
-
+// Data wrapper methods for line graphs, radar graphs, and detail tables.
 export class DataWrapperForViz{
+    // Map index to color.
     private static mapIdxToColor(idx: number): string {
         const colorList = Object.values(Color);
         return colorList[idx];
     }
 
+    // Wrap data for line graph.
     static wrapDataForLine(data: Array<{tag: string, values: Array<number>}>): any {
         const result = [];
         for (let i = 0; i < data?.length ?? 0; i++) {
@@ -101,6 +109,7 @@ export class DataWrapperForViz{
         return result;
     }
 
+    // Wrap data for radar graph.
     static wrapDataForRadar(data: Array<{tag: string, values: Array<any>}>): any {
 
         console.log("*******orderedCategories******")
@@ -151,6 +160,7 @@ export class DataWrapperForViz{
         return result;
     }
 
+    // Wrap data for detail table.
     static wrapDataForDetail(data: Array<{tag: string, values: Array<number>}>, custom_tags: Array<string>): any {
         const result = [];
         for (let i = 0; i < data?.length ?? 0; i++) {
@@ -176,46 +186,3 @@ export class DataWrapperForViz{
         return result;
     }
 }
-
-
-// export const lineChartDataTotalSpent = [
-//     {
-//       name: "Revenue",
-//       data: [50, 64, 48, 66, 49, 68],
-//       color: "#4318FF",
-//     },
-//     {
-//       name: "Profit",
-//       data: [30, 40, 24, 46, 20, 46],
-//       color: "#6AD2FF",
-//     },
-//   ];
-  
-  
-//   export const lineChartDataTimelyLineGraphs = [
-//     {
-//       name: "Revenue",
-//       data: [50, 64, 48, 66, 49, 68],
-//       color: "#4318FF",
-//     },
-//     {
-//       name: "Profit",
-//       data: [30, 40, 24, 46, 20, 46],
-//       color: "#6AD2FF",
-//     },
-//   ];
-  
-  
-//   export const lineChartDataRequests = [
-//     {
-//       name: "Revenue",
-//       data: [50, 64, 48, 66, 49, 68],
-//       color: "#4318FF",
-//     },
-//     {
-//       name: "Profit",
-//       data: [30, 40, 24, 46, 20, 46],
-//       color: "#6AD2FF",
-//     },
-//   ];
-  

@@ -24,7 +24,9 @@ import {
 import LoginModal from "components/login";
 
 /*
-  Modal to register your own model API for private / public leaderboard upload.
+  Modal to register your own model API for evaluations and private / public leaderboard upload.
+  
+  Related modal : HFModal
 */
 const BYOMModal = (props: {
     isBYOMOpen : boolean;

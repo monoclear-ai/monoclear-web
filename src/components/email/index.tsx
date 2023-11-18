@@ -11,7 +11,9 @@ import React from "react";
 import { useEffect } from "react";
 import BetaModal from "components/beta";
 
-
+/*
+  Modal for Email Subscription.
+*/
 const EmailModal = (props: {
     isEmailOpen : boolean;
     onEmailOpen : () => void; 
@@ -39,10 +41,10 @@ const EmailModal = (props: {
           <ModalContent className="!z-[1002] !m-auto !w-max min-w-[350px] !max-w-[85%]">
             <ModalBody>
               <Card extra="px-[30px] pt-[35px] pb-[40px] max-w-[450px] flex flex-col !z-[1004]">
-                <h1 className="mb-[20px] text-2xl font-bold">구독 확인</h1>
+                <h1 className="mb-[20px] text-2xl font-bold">Confirm Subscription</h1>
                 <p className="mb-1">
-                  모노클리어.ai 정보 업데이트 받기에 동의하셨습니다.<br/>
-                  베타 또한 참여하시겠습니까?
+                  You have agreed to receive Monoclear.ai information updates.<br/>
+                  Do you also want to receive beta access to the platform?
                 </p>
                 <div className="mt-3 flex flex-row gap-2">
                   <button

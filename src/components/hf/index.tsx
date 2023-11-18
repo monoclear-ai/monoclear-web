@@ -21,7 +21,10 @@ import {
 import LoginModal from "components/login";
 import { AiFillTag } from "react-icons/ai";
 
-
+/*
+  Modal for HuggingFace Model registration.
+  Related modal : BYOModal
+*/
 const HFModal = (props: {
     isHFOpen : boolean;
     onHFOpen : () => void; 
@@ -109,14 +112,14 @@ const HFModal = (props: {
           <ModalContent className="!z-[1002] !m-auto !w-max min-w-[350px] !max-w-[85%]">
             <ModalBody>
               <Card extra="px-[30px] pt-[35px] pb-[40px] max-w-[450px] flex flex-col !z-[1004]">
-                <h1 className="mb-[20px] text-2xl font-bold">(베타) 허깅페이스 모델 등록</h1>
+                <h1 className="mb-[20px] text-2xl font-bold">(BETA) Register HuggingFace Model</h1>
                 <p className="mb-2">
                   모델 크기에 따라 평가에 시간이 소요될 수 있습니다 (1일이상).<br/>
                   빠른 평가가 필요할 경우 커스텀 모델 API를 추천드립니다.
                 </p>
                   
                 <div className="font-bold">
-                  모델명
+                  Model Name
                 </div>
                 <div className="flex h-[40px] w-[340px] mt-1 items-center rounded-full bg-lightPrimary text-navy-700 dark:bg-navy-900 dark:text-white xl:w-[225px]">
                   <p className="pl-3 pr-2 text-xl">
@@ -132,7 +135,7 @@ const HFModal = (props: {
                   />
                 </div>
                 <div className="font-bold mt-2">
-                  회신 이메일 확인
+                  Confirm Email
                 </div>
                 <div className="flex h-[40px] w-[340px] mt-[8px] items-center rounded-full bg-lightPrimary text-navy-700 dark:bg-navy-900 dark:text-white xl:w-[225px]">
                   <p className="pl-3 pr-2 text-xl">
@@ -140,7 +143,7 @@ const HFModal = (props: {
                   </p>
                   <input
                     type="text"
-                    placeholder="이메일 확인"
+                    placeholder="Confirm Email"
                     value={email}
                     className="block h-full w-full -mr-5 rounded-full bg-lightPrimary text-sm font-medium text-navy-700 outline-none placeholder:!text-gray-400 dark:bg-navy-900 dark:text-white dark:placeholder:!text-white sm:w-fit"
                     onChange={e => setModel(e.target.value)}
@@ -165,7 +168,7 @@ const HFModal = (props: {
                   </p>
                   <input
                     type="text"
-                    placeholder="모델 이름"
+                    placeholder="Model Name"
                     value={tag}
                     className="block h-full w-full -mr-5 rounded-full bg-lightPrimary text-sm font-medium text-navy-700 outline-none placeholder:!text-gray-400 dark:bg-navy-900 dark:text-white dark:placeholder:!text-white sm:w-fit"
                     onChange={e => setTag(e.target.value)}

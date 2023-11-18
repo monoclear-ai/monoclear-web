@@ -1,14 +1,12 @@
 import { useDisclosure } from "@chakra-ui/hooks";
 import React, { useEffect } from "react";
-import { RiMoonFill, RiOpenaiFill, RiSunFill } from "react-icons/ri";
+import { RiMoonFill, RiSunFill } from "react-icons/ri";
 import {
   AiOutlineEnter,
   AiOutlineMail
 } from "react-icons/ai";
-import BYOMModal from "components/byom";
 import { useSession } from "next-auth/react";
 import { EmailSubscriber } from "utils/utils";
-import BetaModal from "components/beta";
 import EmailModal from "components/email";
 
 // TODO : Refactor modals
@@ -44,7 +42,7 @@ const Navbar = (props: {
           </p>
           <input
             type="text"
-            placeholder="이메일 주소"
+            placeholder="Email Address"
             value={navEmail}
             onChange={e => setNavEmail(e.target.value)}
             className="block h-full w-full -mr-5 rounded-full bg-lightPrimary text-sm font-medium text-navy-700 outline-none placeholder:!text-gray-400 dark:bg-navy-900 dark:text-white dark:placeholder:!text-white sm:w-fit"
@@ -59,11 +57,11 @@ const Navbar = (props: {
         >
           {darkmode ? (
             <button className="bg-transparent hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-full">
-              구독
+              Subscribe
             </button>
           ) : (
             <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
-              구독
+              Subscribe
             </button>
           )}
         </div>

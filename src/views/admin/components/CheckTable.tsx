@@ -19,6 +19,18 @@ type RowObj = {
   date: string;
 };
 
+/*
+  Table with checkboxes.
+  Can be used for selecting models to upload.
+  Options:
+    title: string - title of table
+    tableColumns: string[] - column names
+    tableData: any[] - data to display
+    headless: boolean - whether to display header or not
+    directSubmitOnClick: any - function to call when upload button is clicked
+    selIndices: any - selected indices of checkbox items
+    setSelIndices: any - method to change selected indices
+*/
 function CheckTable(props: { title: string, tableColumns: any, 
   tableData: any, headless?: boolean, directSubmitOnClick?: any, 
   selIndices?: any, setSelIndices?: any }) {
@@ -95,7 +107,7 @@ function CheckTable(props: { title: string, tableColumns: any,
               onClick={directSubmitOnClick}
               className="text-lg ml-5 bg-blue-500 hover:bg-blue-700 text-white 
               font-bold py-2 px-4 rounded-xl">
-                모델 올리기
+                Upload Model
               </button>
             )
           : <></>}

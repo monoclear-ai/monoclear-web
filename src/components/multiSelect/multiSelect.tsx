@@ -1,6 +1,10 @@
 import { useState, useEffect, useRef } from "react";
 
-// https://medium.com/@antonprudkohliad/how-to-implement-a-multi-select-dropdown-component-with-react-and-tailwind-css-090010656d7b
+/*
+  Custom UI element for selecting multiple options.
+
+  https://medium.com/@antonprudkohliad/how-to-implement-a-multi-select-dropdown-component-with-react-and-tailwind-css-090010656d7b
+*/
 export default function MultiSelectDropdown({
   formFieldName,
   options,
