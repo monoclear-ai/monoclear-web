@@ -13,6 +13,9 @@ import LoginModal from "components/login";
 import { EmailSubscriber } from "utils/utils";
 
 
+/*
+
+*/
 const BetaModal = (props: {
     isBetaOpen : boolean;
     onBetaOpen : () => void; 
@@ -92,13 +95,13 @@ const BetaModal = (props: {
           <ModalContent className="!z-[1002] !m-auto !w-max min-w-[350px] !max-w-[85%]">
             <ModalBody>
               <Card extra="px-[30px] pt-[35px] pb-[40px] max-w-[450px] flex flex-col !z-[1004]">
-                <h1 className="mb-[20px] text-2xl font-bold">베타 접속 요청</h1>
+                <h1 className="mb-[20px] text-2xl font-bold">Beta Access Request</h1>
                 <p className="mb-1">
-                  모노클리어.ai 는 LM과 챗봇의 성능을 관리하고 변화를 추적할 수 있는 플랫폼입니다.<br/>
-                  아래 정보를 입력 주시면, 곧 있을 베타 오픈시에 모노클리어.ai의 접속 권한을 순차적으로 제공할 예정입니다.
+                  Monoclear.ai is a platform to track LM and chatbot performance for specialized domains.<br/>
+                  If you input the below information, on beta open Monoclear.ai access credentials will be sent to your email.<br/>
                 </p>
                 <div className="mt-2 font-bold">
-                이메일 (필수)
+                Email (Required)
                 </div>
                 <div className="flex h-[40px] w-[340px] mt-[8px] items-center rounded-full bg-lightPrimary text-navy-700 dark:bg-navy-900 dark:text-white xl:w-[225px]">
                 <input
@@ -110,7 +113,7 @@ const BetaModal = (props: {
                 />
                 </div>
                 <div className="mt-2 font-bold">
-                이름
+                Name
                 </div>
                 <div className="flex h-[40px] w-[340px] mt-[8px] items-center rounded-full bg-lightPrimary text-navy-700 dark:bg-navy-900 dark:text-white xl:w-[225px]">
                 <input
@@ -122,7 +125,7 @@ const BetaModal = (props: {
                 />
                 </div>
                 <div className="mt-2 font-bold">
-                소속
+                Organization
                 </div>
                 <div className="flex h-[40px] w-[340px] mt-[8px] items-center rounded-full bg-lightPrimary text-navy-700 dark:bg-navy-900 dark:text-white xl:w-[225px]">
                 <input
@@ -134,7 +137,7 @@ const BetaModal = (props: {
                 />
                 </div>
                 <div className="mt-2 font-bold">
-                모델 업로드 여부 (우선권을 드립니다.)
+                Have you uploaded your model? (prioritized.)
                 </div>
                 <div className="flex h-[40px] w-[340px] mt-[8px] items-center rounded-full bg-lightPrimary text-navy-700 dark:bg-navy-900 dark:text-white xl:w-[225px]">
                 <input
@@ -146,7 +149,7 @@ const BetaModal = (props: {
                 />
                 </div>
                 <div className="mt-2 font-bold">
-                모델 종류 및 테스트 할 기능 설명
+                Explain the model type and feature to test.
                 </div>
                 <div className="flex h-[40px] w-[340px] mt-[8px] items-center rounded-full bg-lightPrimary text-navy-700 dark:bg-navy-900 dark:text-white xl:w-[225px]">
                 <input

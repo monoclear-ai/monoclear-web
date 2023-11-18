@@ -12,6 +12,8 @@ Based on Horizon UI (below).
 ```
 pip install -r requirements.txt
 
+npm install
+
 npm run dev
 ```
 
