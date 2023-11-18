@@ -15,11 +15,12 @@ pip install -r requirements.txt
 npm run dev
 ```
 
-For building and running:
+For production build:
 
 ```
-npm run 
+next build
 
+next start
 ```
 
 ## How to run API Server
@@ -29,7 +30,7 @@ cd api
 
 pip install -r requirements-api.txt
 
-python index.py
+npm run fastapi-dev
 ```
 
 ## How to run Model Inference Server
@@ -41,7 +42,7 @@ cd api
 
 pip install -r requirements-testrun.txt
 
-python entry_test_runner.py
+npm run testrun-dev
 ```
 
 ## How to run Message Notification Server
@@ -53,7 +54,7 @@ cd api
 
 pip install -r requirements-notify.txt
 
-python entry_notifier.py
+npm run notify-dev
 ```
 
 ## License
