@@ -14,7 +14,9 @@ import { EmailSubscriber } from "utils/utils";
 
 
 /*
+  Modal for Beta Access Request
 
+  Input data will be sent to the backend and saved in the database.
 */
 const BetaModal = (props: {
     isBetaOpen : boolean;
@@ -68,7 +70,7 @@ const BetaModal = (props: {
             if (data["status"] == "success") {
                 EmailSubscriber.subscribe(email)
                 setTested(true)
-                setTestLog("성공하였습니다.")
+                setTestLog("Success.")
             } else {
                 setTestLog("Error: " + data["message"])
                 setTested(false)

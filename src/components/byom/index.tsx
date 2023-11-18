@@ -23,7 +23,9 @@ import {
 } from "react-icons/md";
 import LoginModal from "components/login";
 
-
+/*
+  Modal to register your own model API for private / public leaderboard upload.
+*/
 const BYOMModal = (props: {
     isBYOMOpen : boolean;
     onBYOMOpen : () => void; 
@@ -61,7 +63,7 @@ const BYOMModal = (props: {
     const [head, setHead] = React.useState(headDefault);
     const [body, setBody] = React.useState(bodyDefault);
   
-    const [testLog, setTestLog] = React.useState("POST 요청이 진행되며, 답변은 'choices' 필드가 최상단에 있어야 합니다.");
+    const [testLog, setTestLog] = React.useState("POST request will be executed, reponse should have a 'choices' field at top.");
   
   
     function handleSave() {
@@ -140,7 +142,7 @@ const BYOMModal = (props: {
         "body": JSON.stringify(JSON.parse(replaced)),
       }
   
-      fetch("https://www.website.com/backend/test_model_full", {
+      fetch(`${process.env.NEXT_PUBLIC_ENDPOINT_URL}/backend/test_model_full`, {
         method: 'POST',
         body: JSON.stringify(payload),
         headers: {
@@ -206,13 +208,13 @@ const BYOMModal = (props: {
           <ModalContent className="!z-[1002] !m-auto !w-max min-w-[350px] !max-w-[85%]">
             <ModalBody>
               <Card extra="px-[30px] pt-[35px] pb-[40px] max-w-[450px] flex flex-col !z-[1004]">
-                <h1 className="mb-[20px] text-2xl font-bold">모델 등록</h1>
+                <h1 className="mb-[20px] text-2xl font-bold">Register Model</h1>
                 <p className="mb-[10px]">
-                  제공된 LLM API는 모델을 테스트하는데만 사용됩니다. 
+                  Provided LLM API is only used to test the model. 
                   <p>
-                  <a className="underline text-blue-600 hover:text-blue-800 visited:text-purple-600" 
-                  href="https://platform.openai.com/docs/api-reference/making-requests">OpenAI API</a>에 있는 choices 필드가 사용됩니다. <br/>
-                  다른 형식의 경우 <a href="mailto:****@website.com">****@website.com</a>로 문의 바랍니다.
+                  Choices field in <a className="underline text-blue-600 hover:text-blue-800 visited:text-purple-600" 
+                  href="https://platform.openai.com/docs/api-reference/making-requests">OpenAI API</a> is used. <br/>
+                  If in other format, please contact <a href="mailto:****@website.com">****@website.com</a>
                   </p>
 
                   <div className="mt-[8px] font-bold">
@@ -250,7 +252,7 @@ const BYOMModal = (props: {
                         Body
                       </div>
                       <div>
-                        <u>&lt;MESSAGES&gt;</u> 라는 항목을 찾아 <br/><u>&#91;&#123;"role":"user", "content":" ...&#125;", ...&#93;</u> 형태와 치환합니다. 
+                        Find <u>&lt;MESSAGES&gt;</u> field and replace with <br/><u>&#91;&#123;"role":"user", "content":" ...&#125;", ...&#93;</u>.
                       </div>
                       <div className="flex h-[160px] w-[340px] mt-[5px] items-center rounded-2xl bg-lightPrimary text-navy-700 dark:bg-navy-900 dark:text-white">
                         <textarea
@@ -271,7 +273,7 @@ const BYOMModal = (props: {
                   </p>
                   <input
                     type="text"
-                    placeholder="모델 이름"
+                    placeholder="Model Name"
                     value={tag}
                     className="block h-full w-full -mr-5 rounded-full bg-lightPrimary text-sm font-medium text-navy-700 outline-none placeholder:!text-gray-400 dark:bg-navy-900 dark:text-white dark:placeholder:!text-white sm:w-fit"
                     onChange={e => setTag(e.target.value)}
@@ -306,10 +308,10 @@ const BYOMModal = (props: {
           <ModalContent className="!z-[1002] !m-auto !w-max min-w-[350px] !max-w-[85%]">
             <ModalBody>
               <Card extra="px-[30px] pt-[35px] pb-[40px] max-w-[450px] flex flex-col !z-[1004]">
-                <h1 className="mb-[20px] text-2xl font-bold">평가 진행</h1>
+                <h1 className="mb-[20px] text-2xl font-bold">Execute Test</h1>
                 <p className="mb-4">
-                  본인 API를 사용하지 않으면 과금이 발생할 수 있습니다.<br/>
-                  평가 완료후 이메일을 보내드립니다 (2시간 예상).
+                  You may be charged if you are not using your own API.<br/>
+                  We will send you an email after completion of the test (est. 2 hours).
                   </p>
                   <div className="flex h-[40px] w-[340px] mb-3 items-center rounded-full bg-lightPrimary text-navy-700 dark:bg-navy-900 dark:text-white xl:w-[225px]">
                     <p className="pl-3 pr-2 text-xl">
@@ -317,7 +319,7 @@ const BYOMModal = (props: {
                     </p>
                     <input
                       type="text"
-                      placeholder="공개 유저명"
+                      placeholder="Public Username"
                       value={name}
                       className="block h-full w-full -mr-5 rounded-full bg-lightPrimary text-sm font-medium text-navy-700 outline-none placeholder:!text-gray-400 dark:bg-navy-900 dark:text-white dark:placeholder:!text-white sm:w-fit"
                       onChange={e => setName(e.target.value)}
@@ -329,7 +331,7 @@ const BYOMModal = (props: {
                     </p>
                     <input
                       type="text"
-                      placeholder="이메일 확인"
+                      placeholder="Verify Email"
                       value={email}
                       className="block h-full w-full -mr-5 rounded-full bg-lightPrimary text-sm font-medium text-navy-700 outline-none placeholder:!text-gray-400 dark:bg-navy-900 dark:text-white dark:placeholder:!text-white sm:w-fit"
                       onChange={e => setEmail(e.target.value)}
