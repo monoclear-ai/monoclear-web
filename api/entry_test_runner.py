@@ -1,6 +1,18 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
+"""
+TestRunner server for evaluating models.
+
+This script is a daemon that listens to the SQS queue for tasks.
+When a task is received, it will evaluate the model and send the results to the result queue.
+
+The task queue is populated by the API server.
+The result queue is populated by this daemon.
+
+Currently for use with the leaderboard.
+"""
+
 from huggingface_hub.hf_api import HfFolder; HfFolder.save_token('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')
 
 import json
@@ -21,6 +33,7 @@ from db_models import db_models
 from datetime import datetime
 from util import DateTimeEncoder
 
+# DB initialization
 db_users.init()
 db_evals.init()
 db_models.init()
@@ -33,11 +46,12 @@ KLUE_TASKS = ["klue_nli", "klue_sts", "klue_ynat"]
 QUICK_TASK_STR = ','.join(HAERAE_TASKS)
 FULL_TASK_STR = ','.join(KOBEST_TASKS + KLUE_TASKS + HAERAE_TASKS)
 
+# SQS initialization
 sqs = boto3.resource('sqs')
 res_queue = sqs.Queue(RESULT_QUEUE_URL)
 
 class Evaluator():
-
+    """Evaluator class competible with LM Evaluation Harness."""
     def __init__(self, payload: AsyncTaskPayload, truncate: bool) -> None:
         self.model_args = ""
         self.provide_description = False
@@ -127,6 +141,7 @@ class Evaluator():
         return outputs
 
     def _parse_results(self, results):
+        """Parse results from LM Evaluation Harness corresponding to the tasks specified."""
         print(results)
         if self.tasks == "truthfulqa_gen":
             return self._parse_truthfulqa(results)
@@ -147,7 +162,7 @@ class Evaluator():
             raise NotImplementedError(f"Unknown task type : {self.tasks}")
 
     def evaluate(self):
-
+        """Performs evaluations based on LM Evaluation Harness."""
         if self.limit:
             print(
                 "WARNING: --limit SHOULD ONLY BE USED FOR TESTING. REAL METRICS SHOULD NOT BE COMPUTED USING LIMIT."
@@ -185,8 +200,10 @@ class Evaluator():
 
         return self._parse_results(results)
 
-# Consider task pooling
 class TestRunListener(SqsListener):
+    """Listener for the task queue.
+    When a task is received, it will evaluate the model and send the results to the result queue.
+    """
     def handle_message(self, body, attributes, messages_attributes):
         print(datetime.now())
         print(body)
@@ -225,6 +242,7 @@ class TestRunListener(SqsListener):
 # TODO: Another option is running multiple blocking daemons
 # TODO: Check host utility 
 if __name__ == "__main__":
+    """AWS SQS Listener for the task queue."""
     test_run_listener = TestRunListener(
             queue="TaskQueue",
             queue_url=TASK_QUEUE_URL,

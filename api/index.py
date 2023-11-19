@@ -45,7 +45,7 @@ origins = [
     "http://ec2-****.compute-1.amazonaws.com"
 ]
 
-
+# FAST API initialization
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
@@ -55,7 +55,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
+# Mailchimp Initialization
 try:
     client = MailchimpMarketing.Client()
     client.set_config({
@@ -68,7 +68,7 @@ except ApiClientError as error:
     print(error)
     client = None
 
-
+# Request Logging
 async def set_body(request: Request, body: bytes):
     async def receive():
         return {"type": "http.request", "body": body}
@@ -79,7 +79,6 @@ async def get_body(request: Request) -> bytes:
     body = await request.body()
     await set_body(request, body)
     return body
-
 
 @app.middleware("http")
 async def app_entry(request: Request, call_next):
@@ -92,6 +91,7 @@ async def app_entry(request: Request, call_next):
     return response
 
 
+# DB initialization
 db_users.init()
 db_evals.init()
 db_models.init()
@@ -100,6 +100,7 @@ db_beta.init()
 db_auth.init()
 db_samples.init()
 
+# Test initializations
 test_quick_kor.init()
 
 for test in get_gen_tests():
@@ -117,11 +118,17 @@ for test in get_full_kor_tests():
 
 @app.get("/backend")
 async def root():
+    """
+    Health check.
+    """
     return {"message": "Hello World"}
 
 
 @app.post("/backend/beta/signup")
 async def beta_signup(betaInfo: BetaSignup):
+    """
+    Signup for Beta program.
+    """
     betaInfo.save_date = time_log.get_pst()
     try:
         db_beta.create(betaInfo.email, dict(betaInfo))
@@ -135,6 +142,9 @@ async def beta_signup(betaInfo: BetaSignup):
 
 @app.post("/backend/email/{email}/signup")
 async def email_signup(email: str):
+    """
+    Subscribe to email list.
+    """
     try:
         response = client.lists.add_list_member(MAILCHIMP_LIST_ID, {
             "email_address": email,
@@ -157,6 +167,11 @@ async def email_signup(email: str):
 
 @app.post("/backend/create_user")
 async def create_user(user: User):
+    """
+    Create User.
+
+    Eval is created at the same time and tied to User via eval_key.
+    """
     eval_key = str(uuid.uuid4())
     eval = Eval(eval_key=eval_key)
     user.eval_key = eval_key
@@ -180,6 +195,10 @@ async def create_user(user: User):
 
 @app.post("/backend/test_model_full")
 async def test_model_full(model: MLModelFull):
+    """
+    Testing whether custom LLM API works or not.
+    Leaderboard data loading.
+    """
     # No saving
     head = json.loads(model.head)
     body = json.loads(model.body)
@@ -191,6 +210,13 @@ async def test_model_full(model: MLModelFull):
 
 @app.post("/backend/user/{email}/save_model_full")
 async def save_model_full(email: str, model: MLModelFull):
+    """
+    Saving LLM API information.
+    Leaderboard data loading.
+
+    Email is used to get User information.
+    LLM API information is saved as a Model separately.
+    """
     logging.warn("START*************************************************")
     logging.warn(model)
 
@@ -199,7 +225,7 @@ async def save_model_full(email: str, model: MLModelFull):
     logging.warn(user)
 
     eval_key = user["eval_key"]
-    eval = db_evals.get(eval_key)
+    eval = db_evals.get(eval_key)   # Validation
 
     unique_tag = tagger.unique_tag(eval_key, model.tag)
     model.tag = unique_tag
@@ -221,6 +247,13 @@ async def save_model_full(email: str, model: MLModelFull):
 
 @app.post("/backend/user/{email}/save_hf")
 async def save_hf(email: str, model: HFModel):
+    """
+    Saving HuggingFace model information.
+    Leaderboard data loading.
+
+    Email is used to get User information.
+    HuggingFace model information is saved as a Model separately.
+    """
     logging.warn("START*************************************************")
     logging.warn(model)
 
@@ -229,7 +262,7 @@ async def save_hf(email: str, model: HFModel):
     logging.warn(user)
 
     eval_key = user["eval_key"]
-    eval = db_evals.get(eval_key)
+    eval = db_evals.get(eval_key)   # Validation
 
     unique_tag = tagger.unique_tag(eval_key, model.tag)
     model.tag = unique_tag
@@ -256,6 +289,12 @@ async def save_hf(email: str, model: HFModel):
 
 @app.post("/backend/user/{email}/kor_quick_eval/{model_tag}")
 async def kor_quick_eval(email: str, model_tag: str):
+    """
+    Queuing quick Korean evaluation (HAERAE only).
+    Leaderboard data loading.
+
+    TODO : In the future, maybe add a local evaluation.
+    """
 
     # Email will be used to search for an user.
     # If the user doesn't exist, still provide return email info.
@@ -276,6 +315,10 @@ async def kor_quick_eval(email: str, model_tag: str):
 
 @app.post("/backend/user/{email}/kor_full_eval/{model_tag}")
 async def kor_full_eval(email: str, model_tag: str):
+    """
+    Queuing full Korean evaluation (3 evaluations).
+    Leaderboard data loading.
+    """
 
     # Email will be used to search for an user.
     # If the user doesn't exist, still provide return email info.
@@ -295,6 +338,10 @@ async def kor_full_eval(email: str, model_tag: str):
 
 @app.get("/backend/public_ranks")
 async def public_ranks():
+    """
+    Obtain public ranks for the leaderboard.
+    No authentication required.
+    """
     # NO auth check for public API
 
     rank_payload = {}
@@ -318,11 +365,15 @@ async def public_ranks():
 
     return {"message": "Public ranks loaded", "ranks": rank_payload}
 
-# Not paginated
-
 
 @app.get("/backend/eval/{eval_key}/samples/{model_tag}/{page}")
 async def get_samples(eval_key: str, model_tag: str, page: int):
+    """
+    Obtain samples for deep analysis of model mistakes.
+    Use with Python SDK.
+
+    TODO : Add pagination.
+    """
     sample_key = f"{eval_key}__{model_tag}__{page}"
     samples = db_samples.get(sample_key)
     if not samples:
@@ -339,6 +390,14 @@ async def get_samples(eval_key: str, model_tag: str, page: int):
 
 @app.get("/backend/user/{email}")
 async def user_api(email: str):
+    """
+    Get user information with the email.
+
+    Return user information, eval information, and ranks.
+    Called upon login initialization with next-auth.
+
+    SDK Key is eval_key corresponding to the user, which is also for use with the Python SDK.
+    """
     user = db_users.get(email)
     if user:
         eval_key = user["eval_key"]
@@ -419,12 +478,20 @@ class RankUpdate(BaseModel):
 
 @app.post("/backend/ranking/{task}/submit")
 async def update_ranks(task: str, rankUpdate: RankUpdate):
+    """
+    Calculates public ranks and SOTA ranks seperately.
+
+    Public ranks include all submissions, while SOTA ranks only include best submission at given time.
+    Leaderboard data loading.
+    """
 
     new_model_tags = rankUpdate.new_model_tags
     public_rank_key = f"{task}__public"
     public_rank = db_ranking.get(public_rank_key)
     if not public_rank:
         raise ValueError("Public ranking not found")
+    
+    # Update PUBLIC RANKING
     public_ranks = public_rank["ranks"]
     # Removing duplicate tags
     for tag, submit_date, score_dict in public_ranks:

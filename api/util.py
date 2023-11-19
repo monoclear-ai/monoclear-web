@@ -7,7 +7,7 @@ import pytz
 
 
 class time_log:
-
+    """Time log for debugging"""
     @classmethod
     def _get_utc(cls):
         date = datetime.now(tz=pytz.utc)
@@ -26,6 +26,7 @@ class time_log:
         return date.isoformat()
     
 class tagger:
+    """Tagging for ranking"""
     @classmethod
     def unique_tag(cls, eval_key, tag):
         return f'{eval_key}__{tag}'
@@ -40,6 +41,7 @@ class dict_serialize:
         return ','.join([f"{k}={v}" for k, v in d.items()])
     
 class DateTimeEncoder(json.JSONEncoder):
+    """Helper class used with JSON dumps."""
     def default(self, o):
         if isinstance(o, datetime):
             return o.isoformat()
@@ -47,6 +49,7 @@ class DateTimeEncoder(json.JSONEncoder):
         return json.JSONEncoder.default(self, o)
     
 class DecimalEncoder(json.JSONEncoder):
+    """Helper class used with JSON dumps."""
     def default(self, o):
         if isinstance(o, decimal.Decimal):
             # wanted a simple yield str(o) in the next line,

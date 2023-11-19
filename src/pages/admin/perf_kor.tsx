@@ -338,7 +338,7 @@ export default function PerfKoDashboard() {
       {/* Card widget */}
       {/* TODO : Dynamically extending score */}
 
-      <div className="mt-3 grid grid-cols-2 gap-5 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-3 3xl:grid-cols-6">
+      <div className="mt-3 grid grid-cols-2 gap-5 lg:grid-cols-3 3xl:grid-cols-6">
         {firstTitle ? 
         <Widget
           icon={<MdBarChart className="h-7 w-7" />}
@@ -358,7 +358,7 @@ export default function PerfKoDashboard() {
           subtitle={`${thirdData[1]}`}
         /> : null}
 
-        <div className="grid grid-cols-2 gap-1">
+        <div className="grid grid-cols-2 lg:grid-cols-1 gap-1">
           <MultiSelect 
           formFieldName={"task"}
           prompt={"Tasks"}
@@ -390,7 +390,7 @@ export default function PerfKoDashboard() {
           headless={false}/>
       </div>
       
-      <div className="mt-8 h-[915px] md:h-[305px] grid gap-5 grid-cols-1 md:grid-cols-2">
+      <div className="mt-5 h-[915px] md:h-[305px] grid gap-5 grid-cols-1 md:grid-cols-2">
       {firstAnalysisTitle ?
         <RadarMetrics title={firstAnalysisTitle}
           metricData={firstDisplay}

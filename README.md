@@ -25,7 +25,9 @@ next build
 next start
 ```
 
-## How to run API Server
+Make sure `.env` file for both client and server is populated according to comments.
+
+## How to run API Server Separately
 
 ```
 cd api
@@ -35,7 +37,7 @@ pip install -r requirements-api.txt
 npm run fastapi-dev
 ```
 
-## How to run Model Inference Server
+## How to run Model Inference Server Separately
 
 Currently only integrated with leaderboard.
 
@@ -47,7 +49,7 @@ pip install -r requirements-testrun.txt
 npm run testrun-dev
 ```
 
-## How to run Message Notification Server
+## How to run Message Notification Server Separately
 
 Currently only integrated with leaderboard.
 

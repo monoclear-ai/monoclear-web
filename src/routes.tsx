@@ -41,14 +41,14 @@ const routes: IRoute[] = [
     component: LeaderboardHaerae,
   },
   {
-    name: "(BETA) Korean Performance",
+    name: "(BETA) Korean",
     layout: "/admin",
     path: "/perf_kor",
     icon: <span className="fi fi-kr h-6 w-6 items-center" />,
     component: PerfKoDashboard,
   },
   {
-    name: "(BETA) English Performance",
+    name: "(BETA) English",
     layout: "/admin",
     path: "/perf_eng",
     icon: <span className="fi fi-us h-6 w-6 items-center" />,

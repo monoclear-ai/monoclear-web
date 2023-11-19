@@ -1,5 +1,6 @@
 from test_base import test_base, MC_TASKS, GEN_TASKS, KOR_TASKS
 
+# List of tests that will be executed.
 class test_mc_mmlu(test_base):
     @classmethod
     def init(cls):
@@ -20,7 +21,6 @@ class test_mc_truthfulqa(test_base):
     @classmethod
     def init(cls):
         cls.task_type = MC_TASKS.TRUTHFULQA
-
 
 class test_gen_lambada(test_base):
     @classmethod

@@ -17,6 +17,9 @@ AWS_REGION = os.getenv('SERVER_AWS_REGION')
 CHARSET = "UTF-8"
 
 class EmailSender:
+    """
+    A class to send emails using AWS SES.
+    """
 
     def __init__(self, recipient) -> None:
         self.recipient = recipient

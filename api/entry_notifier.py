@@ -1,6 +1,17 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
+"""
+Email notifier for the test run results.
+
+This script is a daemon that listens to the SQS queue for results.
+When a result is received, it will format the results and send an email.
+
+The result queue is populated by the TestRunner.
+
+Currently for use with the leaderboard.
+"""
+
 import json
 from constants import AWS_ACCESS_KEY, AWS_SECRET_KEY, AWS_REGION, RESULT_QUEUE_URL, WEBSITE_URL
 
@@ -17,6 +28,7 @@ from db_ranking import db_ranking
 from datetime import datetime
 from util_email import EmailSender
 
+# DB initialization
 db_users.init()
 db_evals.init()
 db_models.init()
@@ -47,7 +59,7 @@ BODY_HTML = """<html>
 </html>"""
 
 class Notifier():
-
+    """Notifier class for sending emails."""
     def __init__(self, payload: TaskResultPayload) -> None:
         self.payload = payload
         self.email = EmailSender(recipient=payload.email)
@@ -100,12 +112,9 @@ class Notifier():
         eval_res = db_evals.update(eval_key, update_eval)
         print(eval_res)
 
-        # TODO : Confirm completed tasks from DB
-        # For now, assume that all tasks are completed.
+        # TODO : Send based on preference
         send = True
         
-        # TODO : Send email
-        # TODO : Notify client
         if send:
             # Only add to private ranking on the same condition as email - when a set of tasks are completed.
             # For now, everytime.
@@ -142,6 +151,9 @@ class Notifier():
 
 # Consider task pooling
 class TestResultListener(SqsListener):
+    """Listener for the task queue.
+    When a result is received, it will format the result and send an email.
+    """
     def handle_message(self, body, attributes, messages_attributes):
         print(datetime.now())
         print(body)
@@ -164,6 +176,7 @@ class TestResultListener(SqsListener):
 # TODO: Another option is running multiple blocking daemons
 # TODO: Check host utility 
 if __name__ == "__main__":
+    """AWS SQS Listener for the results queue."""
     test_run_listener = TestResultListener(
             queue="TaskQueue",
             queue_url=RESULT_QUEUE_URL,

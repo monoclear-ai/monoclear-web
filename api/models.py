@@ -17,8 +17,10 @@ from test_base import GEN_TASKS, MC_TASKS
 #     endpoint: str
 #     private_token: str = ""
 
+# First parameter is the unique key in most models.
 
 class BetaSignup(BaseModel):
+    """Beta signup information."""
     email: str
     save_date: Optional[datetime] = None
     name: str = ""
@@ -28,6 +30,7 @@ class BetaSignup(BaseModel):
 
 
 class MLModelFull(BaseModel):
+    """ML Model (custom API) information. Used with the leaderboard."""
     tag: str
     save_date: Optional[datetime] = None
     eval_key: Optional[str] = None
@@ -37,6 +40,7 @@ class MLModelFull(BaseModel):
 
 
 class HFModel(BaseModel):
+    """Huggingface Model information. Used with the leaderboard."""
     tag: str
     eval_key: Optional[str] = None
     save_date: Optional[datetime] = None
@@ -44,12 +48,14 @@ class HFModel(BaseModel):
 
 
 class User(BaseModel):
+    """User information. Email is unique key."""
     email: str
     name: str
     eval_key: str = ""
 
 
 class Samples(BaseModel):
+    """Sample information. Used with the Python SDK."""
     sample_key: str
 
     # wrong_only is default.
@@ -61,6 +67,7 @@ class Samples(BaseModel):
 
 
 class Eval(BaseModel):
+    """Evaluation information. Used with the Python SDK & leaderboard."""
     eval_key: str
 
     # Added at the time of notification.
@@ -81,6 +88,7 @@ class Eval(BaseModel):
 
 
 class Ranking(BaseModel):
+    """Ranking information. Used with the leaderboard."""
     # key
     task_privacy: str
     # Not sorted.
@@ -88,16 +96,13 @@ class Ranking(BaseModel):
     # Only latest 3 models remain for private models.
     ranks: List[Tuple[str, datetime, Dict[str, Any]]] = []
 
-# All required
-
 
 class BaseResult(BaseModel):
+    """Default result schema used with the leaderboard & testrunner."""
     overall: float
 
-# All required
-
-
 class GenTruthfulQAResult(BaseResult):
+    """Truthful QA result schema used with the leaderboard & testrunner."""
     bleurt: float
     bleu: float
     rouge1: float
@@ -110,6 +115,7 @@ class QueueType(str, Enum):
 
 @payload_schema.register(event_name=QueueType.ASYNC_TASK)
 class AsyncTaskPayload(BaseModel):
+    """Async Task Payload used with the leaderboard & testrunner."""
     id: str
     email: str
     model_tag: str
@@ -119,6 +125,7 @@ class AsyncTaskPayload(BaseModel):
 
 @payload_schema.register(event_name=QueueType.TASK_RESULT)
 class TaskResultPayload(BaseModel):
+    """Task Result Payload used with the leaderboard & testrunner."""
     id: str
     email: str
     model_tag: str
