@@ -53,7 +53,7 @@ BODY_HTML = """<html>
 <body>
   <h1>{}</h1>
   <p>Model '{}' has been evaluated on '{}'.</p>
-  <p>Please check on <a href="{}">https://website.com</a>.</p>
+  <p>Please check on <a href="{}">{}</a>.</p>
   <p>You can confirm and manage detailed results when you sign up for our beta service.</p>
 </body>
 </html>"""
@@ -147,7 +147,7 @@ class Notifier():
             display_tag = model_tag.split("__", 1)[1]
             self.email.send_admin_email(subject=SUBJECT, 
                                         body_txt=BODY_TEXT.format(SUBJECT, display_tag, task_type, WEBSITE_URL),
-                                        body_html=BODY_HTML.format(SUBJECT, display_tag, task_type, WEBSITE_URL))
+                                        body_html=BODY_HTML.format(SUBJECT, display_tag, task_type, WEBSITE_URL, WEBSITE_URL))
 
 # Consider task pooling
 class TestResultListener(SqsListener):

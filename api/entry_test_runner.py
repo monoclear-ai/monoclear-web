@@ -202,7 +202,7 @@ class Evaluator():
 
 class TestRunListener(SqsListener):
     """Listener for the task queue.
-    When a task is received, it will evaluate the model and send the results to the result queue.
+    When a task is received, it will evaluate the model and send the metrics to the result queue.
     """
     def handle_message(self, body, attributes, messages_attributes):
         print(datetime.now())
