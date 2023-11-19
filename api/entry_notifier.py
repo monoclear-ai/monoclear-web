@@ -2,8 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import json
-from constants import AWS_ACCESS_KEY, AWS_SECRET_KEY
-from constants import AWS_REGION
+from constants import AWS_ACCESS_KEY, AWS_SECRET_KEY, AWS_REGION, RESULT_QUEUE_URL, WEBSITE_URL
 
 from sqs_listener import SqsListener
 
@@ -24,9 +23,6 @@ db_models.init()
 db_ranking.init()
 
 TEST_MODE = True
-RESULT_QUEUE_URL = "https://sqs.us-east-1.amazonaws.com/9965****/EvalResult-Queue"
-
-WEBSITE_URL = "https://www.website.com"
 
 # The subject line for the email.
 SUBJECT = "Korean Leaderboard Eval Success"

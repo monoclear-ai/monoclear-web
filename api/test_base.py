@@ -4,7 +4,7 @@ from datetime import datetime
 from enum import Enum
 import json
 import uuid
-from constants import SEND_QUEUE_URL
+from constants import TASK_QUEUE_URL
 
 from util import DateTimeEncoder
 
@@ -62,7 +62,7 @@ class EVAL_FAILURE(EVAL_BASE):
 
 import boto3
 sqs = boto3.resource('sqs')
-res_queue = sqs.Queue(SEND_QUEUE_URL)
+res_queue = sqs.Queue(TASK_QUEUE_URL)
 
 # Base class for implementing tests.
 class test_base(ABC):

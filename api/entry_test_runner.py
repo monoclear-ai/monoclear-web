@@ -6,8 +6,7 @@ from huggingface_hub.hf_api import HfFolder; HfFolder.save_token('hf_lARgYVCIIRH
 import json
 import boto3
 from util import DateTimeEncoder
-from constants import AWS_ACCESS_KEY, AWS_SECRET_KEY
-from constants import AWS_REGION
+from constants import AWS_ACCESS_KEY, AWS_SECRET_KEY, AWS_REGION, TASK_QUEUE_URL, RESULT_QUEUE_URL
 
 from sqs_listener import SqsListener
 
@@ -27,9 +26,6 @@ db_evals.init()
 db_models.init()
 
 TEST_MODE = False
-TASK_QUEUE_URL = "https://sqs.us-east-1.amazonaws.com/9965****/Eval-Queue"
-RESULT_QUEUE_URL = "https://sqs.us-east-1.amazonaws.com/9965****/EvalResult-Queue"
-
 HAERAE_TASKS = ["haerae_hi","haerae_kgk","haerae_lw","haerae_rc","haerae_rw","haerae_sn"]
 KOBEST_TASKS = ["kobest_boolq", "kobest_copa", "kobest_hellaswag", "kobest_sentineg", "kobest_wic"]
 KLUE_TASKS = ["klue_nli", "klue_sts", "klue_ynat"]
