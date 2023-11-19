@@ -10,6 +10,7 @@ import boto3
 # 3. eval key
 # 4. (TODO) purchases
 class db_users(db_base):
+    """Class for user models."""
     @classmethod
     def init(cls):
         cls.db = boto3.resource('dynamodb',

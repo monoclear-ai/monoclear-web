@@ -7,6 +7,7 @@ from util import time_log
 import boto3
 
 class db_beta(db_base):
+    """Class for beta signup models."""
     @classmethod
     def init(cls):
         cls.db = boto3.resource('dynamodb',

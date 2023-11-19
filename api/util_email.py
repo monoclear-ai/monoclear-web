@@ -10,7 +10,6 @@ load_dotenv(dotenv_path=dotenv_path)
 
 SENDER = f"Monoclear <{os.getenv('EMAIL_FROM')}>"
 
-# If necessary, replace us-west-2 with the AWS Region you're using for Amazon SES.
 AWS_REGION = os.getenv('SERVER_AWS_REGION') 
 
 # The character encoding for the email.

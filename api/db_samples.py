@@ -9,6 +9,7 @@ import boto3
 
 # TODO: Pagination
 class db_samples(db_base):
+    """Class for sample models."""
     @classmethod
     def init(cls):
         cls.db = boto3.resource('dynamodb',

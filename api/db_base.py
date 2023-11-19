@@ -1,6 +1,7 @@
 from abc import ABC
 
 class db_base(ABC):
+    """Base class for database operations."""
     @classmethod
     def init(cls):
         pass

@@ -295,7 +295,6 @@ async def kor_quick_eval(email: str, model_tag: str):
 
     TODO : In the future, maybe add a local evaluation.
     """
-
     # Email will be used to search for an user.
     # If the user doesn't exist, still provide return email info.
     user = db_users.get(email)

@@ -1,6 +1,6 @@
 from test_base import test_base, MC_TASKS, GEN_TASKS, KOR_TASKS
 
-# List of tests that will be executed.
+# List of English MC tests that can be executed.
 class test_mc_mmlu(test_base):
     @classmethod
     def init(cls):
@@ -22,6 +22,7 @@ class test_mc_truthfulqa(test_base):
     def init(cls):
         cls.task_type = MC_TASKS.TRUTHFULQA
 
+# List of English generative tests that can be executed.
 class test_gen_lambada(test_base):
     @classmethod
     def init(cls):
@@ -32,6 +33,7 @@ class test_gen_truthfulqa(test_base):
     def init(cls):
         cls.task_type = GEN_TASKS.TRUTHFULQA
 
+# List of Korean tests that can be executed.
 class test_quick_kor(test_base):
     @classmethod
     def init(cls):
