@@ -29,13 +29,13 @@ RESULT_QUEUE_URL = "https://sqs.us-east-1.amazonaws.com/9965****/EvalResult-Queu
 WEBSITE_URL = "https://www.website.com"
 
 # The subject line for the email.
-SUBJECT = "한국어 리더보드 평가 완료"
+SUBJECT = "Korean Leaderboard Eval Success"
 
 # TODO : Prettier email
 # The email body for recipients with non-HTML email clients.
 BODY_TEXT = ("{}\r\n"
-             "모델 '{}'에 대한 '{}' 평가가 완료되었습니다.\r\n"
-             "{}에서 확인 바랍니다.\r\n"
+             "Model '{}' has been evaluated on '{}'.\r\n"
+             "Please check on {}.\r\n"
             )
 
 # TODO : Prettier email
@@ -44,9 +44,9 @@ BODY_HTML = """<html>
 <head></head>
 <body>
   <h1>{}</h1>
-  <p>모델 '{}'에 대한 '{}' 평가가 완료되었습니다.</p>
-  <p><a href="{}">https://website.com</a> 에서 확인 바랍니다.</p>
-  <p>저희 베타 서비스에 참여하면 자세한 결과를 확인 및 관리할 수 있습니다.</p>
+  <p>Model '{}' has been evaluated on '{}'.</p>
+  <p>Please check on <a href="{}">https://website.com</a>.</p>
+  <p>You can confirm and manage detailed results when you sign up for our beta service.</p>
 </body>
 </html>"""
 

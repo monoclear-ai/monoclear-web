@@ -54,9 +54,9 @@ app.add_middleware(
 )
 
 
-MAILCHIMP_API = "****-us21"
+MAILCHIMP_API = "02dbfd46655621f91a85e8faab71dcd9-us21"
 MAILCHIMP_SERVER = "us21"
-MAILCHIMP_LIST_ID = "****"
+MAILCHIMP_LIST_ID = "fc43f11f79"
 try:
     client = MailchimpMarketing.Client()
     client.set_config({
@@ -128,10 +128,10 @@ async def beta_signup(betaInfo: BetaSignup):
         db_beta.create(betaInfo.email, dict(betaInfo))
     except ClientError as e:
         if e.response['Error']['Code'] == 'ConditionalCheckFailedException':
-            return {"message": "중복 이메일 입니다.", "status": "failed", "model": betaInfo}
+            return {"message": "It's a duplicate email.", "status": "failed", "model": betaInfo}
         else:
             return {"message": e.response['Error']['Code'], "status": "failed", "model": betaInfo}
-    return {"message": "베타 등록 완료", "status": "success", "model": betaInfo}
+    return {"message": "Beta registration success.", "status": "success", "model": betaInfo}
 
 
 @app.post("/backend/email/{email}/signup")
@@ -148,12 +148,12 @@ async def email_signup(email: str):
         print(response)
     except ClientError as e:
         if e.response['Error']['Code'] == 'ConditionalCheckFailedException':
-            return {"message": "중복 이메일 입니다.", "status": "failed", "email": email}
+            return {"message": "It's a duplicate email.", "status": "failed", "email": email}
         else:
             return {"message": e.response['Error']['Code'], "status": "failed", "email": email}
     except ApiClientError as e:
         return {"message": e['title'], "status": "failed", "email": email}
-    return {"message": "베타 등록 완료", "status": "success", "email": email}
+    return {"message": "Beta registration success.", "status": "success", "email": email}
 
 
 @app.post("/backend/create_user")
@@ -165,14 +165,14 @@ async def create_user(user: User):
         db_users.create(user.email, dict(user))
     except ClientError as e:
         if e.response['Error']['Code'] == 'ConditionalCheckFailedException':
-            return {"message": "이미 있는 User입니다.", "status": "failed", "user": user, "eval": eval}
+            return {"message": "Already existing User.", "status": "failed", "user": user, "eval": eval}
         else:
             return {"message": e.response['Error']['Code'], "status": "failed", "user": user, "eval": eval}
     try:
         db_evals.create(eval_key, dict(eval))
     except ClientError as e:
         if e.response['Error']['Code'] == 'ConditionalCheckFailedException':
-            return {"message": "이미 있는 Eval입니다.", "status": "failed", "user": user, "eval": eval}
+            return {"message": "Already existing Eval.", "status": "failed", "user": user, "eval": eval}
         else:
             return {"message": e.response['Error']['Code'], "status": "failed", "user": user, "eval": eval}
     msg = "User created"
@@ -214,7 +214,7 @@ async def save_model_full(email: str, model: MLModelFull):
         db_models.create(dict(model))
     except ClientError as e:
         if e.response['Error']['Code'] == 'ConditionalCheckFailedException':
-            return {"message": "이미 있는 태그입니다.", "status": "failed", "model": model}
+            return {"message": "Already existing tag.", "status": "failed", "model": model}
         else:
             return {"message": e.response['Error']['Code'], "status": "failed", "model": model}
     return {"message": "Model saved", "status": "success", "model": model}
@@ -244,7 +244,7 @@ async def save_hf(email: str, model: HFModel):
         db_models.create_hf(dict(model))
     except ClientError as e:
         if e.response['Error']['Code'] == 'ConditionalCheckFailedException':
-            return {"message": "이미 있는 태그입니다.", "status": "failed", "model": model}
+            return {"message": "Already existing tag.", "status": "failed", "model": model}
         else:
             return {"message": e.response['Error']['Code'], "status": "failed", "model": model}
     return {"message": "Model saved", "status": "success", "model": model}
