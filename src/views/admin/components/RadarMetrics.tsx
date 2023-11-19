@@ -31,8 +31,8 @@ export default function RadarMetrics(props: {
     const radarOptions = radarChartOptions(metricNames, minVal, maxVal, stepCnt)
 
     return (
-        <Card extra="flex flex-col bg-white w-full rounded-3xl py-6 px-2 text-center">
-            <div className="mb-auto flex items-center justify-between px-6">
+        <Card extra="!p-[20px] h-[300px] text-center">
+            <div className="relative flex items-center justify-between">
                 <h2 className="text-xl font-bold text-navy-700 dark:text-white">
                     {title}
                 </h2>
@@ -41,8 +41,8 @@ export default function RadarMetrics(props: {
                 </button>
             </div>
 
-            <div className="md:mt-16 lg:mt-0">
-                <div className="h-[210px] w-full">
+            <div className="mt-0">
+                <div className="h-[240px] w-full">
                     <RadarChart 
                         chartOptions={radarOptions} 
                         chartData={radarData} />

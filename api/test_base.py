@@ -4,19 +4,23 @@ from datetime import datetime
 from enum import Enum
 import json
 import uuid
+from constants import SEND_QUEUE_URL
 
 from util import DateTimeEncoder
 
+# Task Types for multi-class evaluation.
 class MC_TASKS(str, Enum):
     MMLU = "mc_mmlu"
     HELLA_SWAG = "mc_hellaswag"
     ARC = "mc_arc"
     TRUTHFULQA = "mc_truthfulqa"
 
+# Task Types for generative evaluatoin.
 class GEN_TASKS(str, Enum):
     LAMBADA = "gen_lambada"
     TRUTHFULQA = "gen_truthfulqa"
 
+# Task Types for Korean evaluation.
 class KOR_TASKS(str, Enum):
     QUICK_KOR = "quick_kor"
     FULL_KOR = "full_kor"
@@ -28,6 +32,7 @@ class EVAL_STORED:
     ended: str = ""
     eval: dict = None
 
+# Base class for evaluation results.
 class EVAL_BASE(ABC):
     pass
 
@@ -55,12 +60,11 @@ class EVAL_FAILURE(EVAL_BASE):
     started: str = ""
     ended: str = ""
 
-SEND_QUEUE_URL = "https://sqs.us-east-1.amazonaws.com/996502725617/Eval-Queue"
-
 import boto3
 sqs = boto3.resource('sqs')
 res_queue = sqs.Queue(SEND_QUEUE_URL)
 
+# Base class for implementing tests.
 class test_base(ABC):
     @classmethod
     def init(cls):

@@ -21,6 +21,8 @@ from util import tagger
 
 from models import *
 
+from constants import MAILCHIMP_API, MAILCHIMP_SERVER, MAILCHIMP_LIST_ID
+
 from db_users import db_users
 from db_evals import db_evals
 from db_models import db_models
@@ -54,9 +56,6 @@ app.add_middleware(
 )
 
 
-MAILCHIMP_API = "02dbfd46655621f91a85e8faab71dcd9-us21"
-MAILCHIMP_SERVER = "us21"
-MAILCHIMP_LIST_ID = "fc43f11f79"
 try:
     client = MailchimpMarketing.Client()
     client.set_config({

@@ -50,7 +50,7 @@ export default function TimelyLineGraphs(props: {
     const lineData = DataWrapperForViz.wrapDataForLine(selectData)
     
 return (
-    <Card extra="!p-[20px] text-center">
+    <Card extra="!p-[20px] h-[300px] text-center">
         <header className="relative flex items-center justify-between">
         <div className="text-xl font-bold text-navy-700 dark:text-white">
             {title}
@@ -74,7 +74,7 @@ return (
                 </div>
             </div>
             </div>
-            <div className="h-full w-full">
+            <div className="w-full">
             <LineChart
                 chartOptions={lineChartOptions}
                 chartData={lineData}

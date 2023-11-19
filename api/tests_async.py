@@ -53,5 +53,3 @@ def get_quick_kor_tests():
 
 def get_full_kor_tests():
     return [test_full_kor]
-
-# TODO : gen versions of mc tests (Minsang's working on it)

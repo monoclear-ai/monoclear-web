@@ -97,9 +97,9 @@ function CheckTable(props: { title: string, tableColumns: any,
   };
 
   return (
-    <Card extra={"w-full h-full sm:overflow-auto px-6"}>
+    <Card extra={"!p-[20px] h-[300px] text-center"}>
       {!headless? (
-      <header className="relative flex items-center justify-between pt-4">
+      <header className="relative flex items-center justify-between">
         <div className="text-xl font-bold text-navy-700 dark:text-white">
           {title}
 
