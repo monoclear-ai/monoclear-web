@@ -42,6 +42,8 @@ class test_full_kor(test_base):
     def init(cls):
         cls.task_type = KOR_TASKS.FULL_KOR
 
+# Grouped tests
+
 def get_mc_tests():
     return [test_mc_mmlu, test_mc_hellaswag, test_mc_arc, test_mc_truthfulqa]
 

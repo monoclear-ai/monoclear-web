@@ -64,8 +64,8 @@ import boto3
 sqs = boto3.resource('sqs')
 res_queue = sqs.Queue(TASK_QUEUE_URL)
 
-# Base class for implementing tests.
 class test_base(ABC):
+    """Base class for implementing tests."""
     @classmethod
     def init(cls):
         pass
