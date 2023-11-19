@@ -7,6 +7,7 @@ type RowObj = {
 	date: string; 
 };
 
+// Example format for input tableData for CheckTable.tsx
 const tableDataCheck: RowObj[] = [
 	{
 		name: [ 'History', true ],

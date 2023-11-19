@@ -1,3 +1,12 @@
+/*
+  Radio component.
+
+  Options:
+    extra: string - extra classes
+    color: string - color of the radio
+    id: string - id of the radio
+    rest: any - any other CSS properties
+*/
 const Radio = (props: {
   extra?: string;
   color?:

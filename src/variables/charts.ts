@@ -1,109 +1,6 @@
 //@ts-nocheck
 
-export const barChartDataDailyTraffic = [
-  {
-    name: "Daily Traffic",
-    data: [20, 30, 40, 20, 45, 50, 30],
-  },
-];
-
-export const barChartOptionsDailyTraffic = {
-  chart: {
-    toolbar: {
-      show: false,
-    },
-  },
-  tooltip: {
-    style: {
-      fontSize: "12px",
-      fontFamily: undefined,
-      backgroundColor: "#000000"
-    },
-    onDatasetHover: {
-      style: {
-        fontSize: "12px",
-        fontFamily: undefined,
-      },
-    },
-    theme: "dark",
-  },
-  xaxis: {
-    categories: ["00", "04", "08", "12", "14", "16", "18"],
-    show: false,
-    labels: {
-      show: true,
-      style: {
-        colors: "#A3AED0",
-        fontSize: "14px",
-        fontWeight: "500",
-      },
-    },
-    axisBorder: {
-      show: false,
-    },
-    axisTicks: {
-      show: false,
-    },
-  },
-  yaxis: {
-    show: false,
-    color: "black",
-    labels: {
-      show: true,
-      style: {
-        colors: "#CBD5E0",
-        fontSize: "14px",
-      },
-    },
-  },
-  grid: {
-    show: false,
-    strokeDashArray: 5,
-    yaxis: {
-      lines: {
-        show: true,
-      },
-    },
-    xaxis: {
-      lines: {
-        show: false,
-      },
-    },
-  },
-  fill: {
-    type: "gradient",
-    gradient: {
-      type: "vertical",
-      shadeIntensity: 1,
-      opacityFrom: 0.7,
-      opacityTo: 0.9,
-      colorStops: [
-        [
-          {
-            offset: 0,
-            color: "#4318FF",
-            opacity: 1,
-          },
-          {
-            offset: 100,
-            color: "rgba(67, 24, 255, 1)",
-            opacity: 0.28,
-          },
-        ],
-      ],
-    },
-  },
-  dataLabels: {
-    enabled: false,
-  },
-  plotOptions: {
-    bar: {
-      borderRadius: 10,
-      columnWidth: "40px",
-    },
-  },
-};
-
+// Example options for pie chart, PieChart
 export const pieChartOptions = {
   labels: ["Your files", "System", "Empty"],
   colors: ["#4318FF", "#6AD2FF", "#EFF4FB"],
@@ -148,8 +45,10 @@ export const pieChartOptions = {
   },
 };
 
+// Example data for pie chart, PieChart
 export const pieChartData = [63, 25, 12];
 
+// Example data for bar chart, Timely Bar Graphs
 export const barChartDataTimelyBarGraphs = [
   {
     name: "PRODUCT A",
@@ -168,6 +67,7 @@ export const barChartDataTimelyBarGraphs = [
   },
 ];
 
+// Example options for bar chart, TimelyBarGraphs
 export const barChartOptionsTimelyBarGraphs = {
   chart: {
     stacked: true,
@@ -258,6 +158,7 @@ export const barChartOptionsTimelyBarGraphs = {
   },
 };
 
+// Example options for line chart, TimelyLineGraphs
 export const lineChartOptions: any = {
   legend: {
     show: false,
@@ -334,6 +235,7 @@ export const lineChartOptions: any = {
   },
 };
 
+// Example data for radar chart, RadarMetrics
 export const radarChartData = [
   {
     name: 'GPT-4',
@@ -347,6 +249,14 @@ export const radarChartData = [
   }
 ];
 
+/* 
+  Customizable options for radar chart, RadarMetrics
+  
+  @param cats: categories for the radar chart
+  @param minN: minimum value for the radar chart
+  @param maxN: maximum value for the radar chart
+  @param tickN: number of ticks for the radar chart
+*/
 export function radarChartOptions(cats: string[], minN: number, maxN: number, 
                                   tickN: number) {
   return ({

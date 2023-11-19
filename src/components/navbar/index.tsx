@@ -9,7 +9,13 @@ import { useSession } from "next-auth/react";
 import { EmailSubscriber } from "utils/utils";
 import EmailModal from "components/email";
 
-// TODO : Refactor modals
+/*
+  Navbar component that displays the navbar.
+
+  Email input, subscribe button and darkmode are displayed here.
+  Options:
+    onOpenSidenav: () => void - function to open sidenav
+*/
 const Navbar = (props: {
   onOpenSidenav: () => void;
 }) => {

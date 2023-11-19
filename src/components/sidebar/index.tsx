@@ -14,7 +14,14 @@ import React, { useEffect } from "react";
 import { useSession, signIn, signOut } from "next-auth/react"
 import LoginModal from "components/login";
 
+/*
+  Sidebar component that displays the sidebar.
 
+  Options:
+    routes: IRoute[] - array of routes
+    open: boolean - whether sidebar is open
+    onClose: () => void - function to close sidebar
+*/
 const Sidebar = (props: {
   routes: IRoute[];
   open: boolean;

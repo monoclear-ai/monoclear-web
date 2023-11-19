@@ -5,6 +5,12 @@ import BetaModal from "components/beta";
 import { useDisclosure } from "@chakra-ui/hooks";
 import Image from "next/image";
 
+/*
+  Safety Dashboard page.
+
+  Beta signup is enabled by default.
+  Review Korean version (PerfKoDashboard) for eventual release.
+*/
 export default function SafetyDashboard() {
   const { isOpen: isBetaOpen, onOpen: onBetaOpen, onClose: onBetaClose } = useDisclosure({ defaultIsOpen: true});
 

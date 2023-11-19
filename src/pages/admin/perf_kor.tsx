@@ -9,6 +9,20 @@ import RadarMetrics from "views/admin/components/RadarMetrics";
 import CheckTable from "views/admin/components/CheckTable";
 import { Deduplicator } from "utils/utils";
 
+/*
+  Korean Performance Dashboard page.
+
+  Consists of 3 parts:
+  1. Score Trends
+  2. Wrong Samples
+  3. Deep Analysis
+
+  The data is dynamically fetched from the backend, which is uploaded with the SDK.
+  Model & task selection is supported via 2 MultiSelects.
+
+  Supports analyzing up to 3 tasks.
+  Supports selecting 3 models.
+*/
 export default function PerfKoDashboard() {
   const { data: session, update } = useSession()
 

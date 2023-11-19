@@ -20,6 +20,14 @@ function useOutsideAlerter(ref: any, setX: any): void {
   }, [ref, setX]);
 }
 
+/*
+  Dropdown component that toggles when clicking a button.
+  Options:
+    button: JSX.Element - button to click to toggle dropdown
+    children: JSX.Element - children to display when dropdown is open
+    classNames: string - classnames to apply to dropdown
+    animation?: string - animation to apply to dropdown
+*/
 const Dropdown = (props: {
   button: JSX.Element;
   children: JSX.Element;

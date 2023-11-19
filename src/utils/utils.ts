@@ -36,7 +36,7 @@ export class Deduplicator{
     }
 }
 
-// TODO : Default Dict
+// Color Dictionary
 enum Color {
   blue = "#4318FF",
   green = "#6AD2FF",

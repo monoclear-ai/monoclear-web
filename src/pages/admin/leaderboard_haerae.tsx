@@ -17,6 +17,23 @@ import HFModal from "components/hf";
 import { GetStaticProps, InferGetServerSidePropsType } from "next";
 import LoginModal from "components/login";
 
+/*
+  SSG (Static Site Generation) for LeaderboardHaerae page.
+  This is an effort to load default leaderboard data before login.
+
+  This function is called during build time.
+  The result is passed to the page component as props.
+
+  For development, the leaderboard will be updated every time the page is refreshed.
+  For production, the leaderboard will not be updated until the next build.
+
+  Options:
+    context: any - context
+
+  Returns:
+    public_rank: any - public rank, list of 
+    sota_rank: any - sota rank
+*/
 export const getStaticProps = (async (context) => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_ENDPOINT_URL}/backend/public_ranks`, {
     method: 'GET',
@@ -36,6 +53,13 @@ export const getStaticProps = (async (context) => {
   }
 }) satisfies GetStaticProps<{public_rank: any, sota_rank: any}>;
 
+/*
+  This page displays the leaderboard for HAERAE metrics.
+
+  Options:
+    public_rank: any - list of public rank items.
+    sota_rank: any - list of sota rank items.
+ */
 export default function LeaderboardHaerae({
   public_rank, sota_rank
 }: InferGetServerSidePropsType<typeof getStaticProps>) {
@@ -76,11 +100,11 @@ export default function LeaderboardHaerae({
       }
       const displayScore = {
         " ": false,
-        "모델": viz_tag,
-        "최신 버전 날짜": new Date(date).toLocaleDateString('en-ZA'),
+        "Model": viz_tag,
+        "Submitted": new Date(date).toLocaleDateString('en-ZA'),
         // TODO: Fill name
-        "유저": "익명",
-        "점수": NumberFormatter.format(score["haerae_overall"]),
+        "User": "Anonymous",
+        "Score": NumberFormatter.format(score["haerae_overall"]),
         "LW": NumberFormatter.format(score["haerae_lw"]),
         "RW": NumberFormatter.format(score["haerae_rw"]),
         "SN": NumberFormatter.format(score["haerae_sn"]),
@@ -170,8 +194,8 @@ export default function LeaderboardHaerae({
   }
 
   // TODO : Create separate table for quick and full eval?
-  const public_columns = ["최신 버전 날짜", "모델", "유저", "점수", "LW", "RW", "SN", "RC", "KGK", "HI"]
-  const private_columns = [" ", "모델", "점수", "LW", "RW", "SN", "RC", "KGK", "HI"]
+  const public_columns = ["Submitted", "Model", "User", "Score", "LW", "RW", "SN", "RC", "KGK", "HI"]
+  const private_columns = [" ", "Model", "Score", "LW", "RW", "SN", "RC", "KGK", "HI"]
 
   function submitToPublic(event: any): void {
     const submitTags: any[] = []
@@ -199,9 +223,9 @@ export default function LeaderboardHaerae({
     <Admin>
       {/* Charts */}
       <div className="mt-5 h-[300px] grid grid-cols-1 gap-5">
-        <TimelyLineGraphs title="최고성능 트렌드" 
+        <TimelyLineGraphs title="SOTA Trend" 
         metricData={sotaData} setMetricData={setSOTAData} 
-        metricName="최고 점수" currentMetric={lastSOTAData} 
+        metricName="Best Score" currentMetric={lastSOTAData} 
         detailData={sotaDetailData}
         detailColumns={public_columns} metricColumns={["score"]} />
       </div>
@@ -209,7 +233,7 @@ export default function LeaderboardHaerae({
       {/* Tables & Charts */}
 
       <div className="mt-5 h-[400px] grid grid-cols-1 gap-5">
-        <CheckTable title="현재 리더보드" tableColumns={public_columns} 
+        <CheckTable title="Current Leaderboard" tableColumns={public_columns} 
         tableData={publicData} directSubmitOnClick={directSubmitOnClick}/>
       </div>
 
@@ -220,9 +244,9 @@ export default function LeaderboardHaerae({
         <ModalContent className="!z-[1002] !m-auto !w-max min-w-[350px] !max-w-[85%]">
           <ModalBody>
             <Card extra="px-[30px] pt-[35px] pb-[40px] max-w-[450px] flex flex-col !z-[1004]">
-              <h1 className="mb-[20px] text-2xl font-bold">리더보드 제출</h1>
+              <h1 className="mb-[20px] text-2xl font-bold">Submit to Leaderboard</h1>
               <p className="mb-[5px]">
-                제출 전에 점수를 확인하세요.
+                Verify scores before submission.
               </p>
               <p className="mb-[15px]">
                 SDK key : {sdkKey}
@@ -235,7 +259,7 @@ export default function LeaderboardHaerae({
                     }}
                   >
                   <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl">
-                    Huggingface 모델
+                    Huggingface Model
                   </button>
                 </div>
                 <div
@@ -245,7 +269,7 @@ export default function LeaderboardHaerae({
                   }}
                 >
                   <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl">
-                    커스텀 모델 API
+                    Custom Model API
                   </button>
                 </div>
               </div>
@@ -253,7 +277,7 @@ export default function LeaderboardHaerae({
               <p className="mb-[10px]">
                 <div className="my-2 border-b text-center">
                 <div className="leading-none px-2 inline-block text-sm text-gray-600 tracking-wide font-medium bg-white transform translate-y-2">
-                  확인된 모델 목록에서 제출 선택 (최신 5개 가능)
+                  Select from private models (up to 5)
                 </div>
                 </div>
               </p>
@@ -267,7 +291,7 @@ export default function LeaderboardHaerae({
                   onClick={submitToPublic}
                 >
                   <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl">
-                    모델 제출
+                    Submit Model
                   </button>
                 </div>
               </div>

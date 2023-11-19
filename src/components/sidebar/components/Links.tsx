@@ -7,6 +7,12 @@ import Link from "next/link";
 import { IRoute } from "types/navigation";
 // chakra imports
 
+/*
+  Routes and Links for the sidebar.
+
+  Options:
+    routes: IRoute[] - array of routes
+*/
 export const SidebarLinks = (props: { routes: IRoute[] }) => {
   // Chakra color mode
   const router = useRouter();

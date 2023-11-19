@@ -2,7 +2,7 @@
 import React from "react";
 
 /*
-  Footer for rights information.
+  Footer for authentication page. Rights information and links to terms of service and support.
 */
 export default function Footer() {
   return (

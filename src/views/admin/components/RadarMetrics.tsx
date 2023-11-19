@@ -4,6 +4,18 @@ import Card from "components/card";
 import { MdQuestionMark } from "react-icons/md";
 import { DataWrapperForViz } from "utils/utils";
 
+/*
+  Radar chart for displaying metrics.
+
+  Uses ApexCharts internally.
+  Options:
+    title: string - title of chart
+    metricNames: string[] - names of metrics
+    metricData: any - data to display
+    minVal: number - minimum value of metric
+    maxVal: number - maximum value of metric
+    stepCnt: number - number of steps between min and max
+*/
 export default function RadarMetrics(props: {
     title: string;
     metricNames: string[];
@@ -17,11 +29,6 @@ export default function RadarMetrics(props: {
     const { title, metricNames, metricData, minVal, maxVal, stepCnt } = props;
     const radarData = DataWrapperForViz.wrapDataForRadar(metricData)
     const radarOptions = radarChartOptions(metricNames, minVal, maxVal, stepCnt)
-
-    // const radarData = [
-    //     {name: "model", data: [1.0, 2.0, 3.0]},
-    // ]
-    // const radarOptions = radarChartOptions(["haerae_hi", "haerae_kgk", "haerae_sn"], 0.0, 4.0, 1.0)
 
     return (
         <Card extra="flex flex-col bg-white w-full rounded-3xl py-6 px-2 text-center">

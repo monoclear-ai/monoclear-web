@@ -1,6 +1,19 @@
 // Custom components
 import React from "react";
 
+/*
+  InputField for displaying input fields.
+
+  Options:
+    id: string - id of input field
+    label: string - label of input field
+    extra: string - extra classes to add to input field
+    placeholder: string - placeholder of input field
+    variant: string - variant of input field
+    state?: string - state of input field
+    disabled?: boolean - disabled state of input field
+    type?: string - type of input field
+*/
 function InputField(props: {
   id: string;
   label: string;

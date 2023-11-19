@@ -11,6 +11,11 @@ import { signIn, signOut } from "next-auth/react"
     
   Input data will be sent to the backend and saved in the database.
   Uses NextAuth.js for authentication.
+  
+  Options:
+    isLoginOpen : boolean - whether login modal is open
+    onLoginOpen : () => void - function to open login modal
+    onLoginClose : () => void - function to close login modal
 */
 const LoginModal = (props: {
     isLoginOpen : boolean;

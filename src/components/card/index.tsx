@@ -1,3 +1,13 @@
+/*
+  Card component.
+  
+  Encapsulates a number of children with a shadow and rounded corners.
+  Options:
+    variant?: string - variant to apply to card
+    extra?: string - extra classes to apply to card
+    children?: JSX.Element | any[] - children to display in card
+    [x: string]: any - other props to apply to card
+*/
 function Card(props: {
   variant?: string;
   extra?: string;

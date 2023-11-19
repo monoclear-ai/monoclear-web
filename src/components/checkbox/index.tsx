@@ -1,3 +1,12 @@
+/*
+  Checkbox used in CheckTable and SignIn.
+
+  checked state is controlled by parent component.
+  Options:
+    extra: string - extra classes
+    color: string - color of checkbox
+    checked: boolean - whether checkbox is checked or not
+*/
 const Checkbox = (props: {
   extra?: string;
   color?:

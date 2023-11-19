@@ -15,6 +15,14 @@ export type ChartProps = ChartState & {
 
 interface LineChartProps extends ChartProps {}
 
+/*
+  LineChart for displaying metrics.
+
+  Uses ApexCharts internally.
+  Options:
+    chartOptions: ApexOptions - options for chart
+    chartData: ApexAxisChartSeries | ApexNonAxisChartSeries - data to display
+*/
 export default function LineChart ({
   chartOptions,
   chartData

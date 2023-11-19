@@ -13,6 +13,12 @@ import BetaModal from "components/beta";
 
 /*
   Modal for Email Subscription.
+  Related modal : BetaModal
+
+  Options:
+    isEmailOpen : boolean - whether email modal is open
+    onEmailOpen : () => void - function to open email modal
+    onEmailClose : () => void - function to close email modal
 */
 const EmailModal = (props: {
     isEmailOpen : boolean;

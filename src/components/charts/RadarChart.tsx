@@ -12,6 +12,14 @@ type ChartState = {
   chartOptions: any;
 };
 
+/*
+  RadarChart for displaying metrics.
+
+  Uses ApexCharts internally.
+  Options:
+    chartOptions: ApexOptions - options for chart
+    chartData: ApexAxisChartSeries | ApexNonAxisChartSeries - data to display
+*/
 class RadarChart extends React.Component<ChartProps, ChartState> {
   constructor(props: { chartData: any[]; chartOptions: any }) {
     super(props);

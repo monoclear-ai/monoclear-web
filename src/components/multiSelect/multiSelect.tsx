@@ -2,8 +2,13 @@ import { useState, useEffect, useRef } from "react";
 
 /*
   Custom UI element for selecting multiple options.
-
   https://medium.com/@antonprudkohliad/how-to-implement-a-multi-select-dropdown-component-with-react-and-tailwind-css-090010656d7b
+
+  Options:
+    formFieldName: string - name of form field
+    options: string[] - array of options
+    onChange: (options: string[]) => void - function to call when options change
+    prompt?: string - prompt to display
 */
 export default function MultiSelectDropdown({
   formFieldName,

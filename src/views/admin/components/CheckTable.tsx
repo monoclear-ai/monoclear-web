@@ -22,6 +22,8 @@ type RowObj = {
 /*
   Table with checkboxes.
   Can be used for selecting models to upload.
+
+  Uses @tanstack/react-table internally.
   Options:
     title: string - title of table
     tableColumns: string[] - column names

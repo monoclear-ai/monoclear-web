@@ -2,11 +2,16 @@ import React from "react";
 import Dropdown from "components/dropdown";
 import { AiOutlineUser } from "react-icons/ai";
 import { BsThreeDots } from "react-icons/bs";
-import { FiSettings } from "react-icons/fi";
 import { AiOutlineShop } from "react-icons/ai";
 import { TiLightbulb } from "react-icons/ti";
 import Link from "next/link"
 
+/*
+  CardMenu that toggles when clicking 3 dots on card.
+
+  Options:
+    transparent: boolean - whether to make the background white or not.
+*/
 function CardMenu(props: { transparent?: boolean }) {
   const { transparent } = props;
   const [open, setOpen] = React.useState(false);

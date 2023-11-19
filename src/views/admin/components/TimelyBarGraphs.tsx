@@ -7,8 +7,14 @@ import {
 import { MdBarChart } from "react-icons/md";
 
  // TODO : Fix shape to be similar to TimelyLineGraphs
+ /*
+   Bar graph for displaying metrics.
+
+    Uses ApexCharts internally.
+    title: string - title of chart
+ */
 const TimelyBarGraphs = (props: { 
-  title: any,
+  title: string,
  }) => {
   const { title } = props;
   return (

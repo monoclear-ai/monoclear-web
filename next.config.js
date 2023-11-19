@@ -1,4 +1,7 @@
 /** @type {import('next').NextConfig} */
+/*
+  Next configuration for route rewrite to connect to Python backend server.
+*/
 const nextConfig = {
     reactStrictMode: true,
     swcMinify: true,

@@ -1,5 +1,16 @@
 import Switch from "components/switch";
 
+/*
+  SwitchField for displaying switch fields.
+
+  Options:
+    id: string - id of switch field
+    label: string - label of switch field
+    desc: string - description of switch field
+    placeholder: string - placeholder of switch field
+    mt: any - margin top of switch field
+    mb: any - margin bottom of switch field
+*/
 const SwitchField = (props: {
   id: string;
   label: string;

@@ -1,6 +1,4 @@
 import {
-    MdArrowDropUp,
-    MdOutlineCalendarToday,
     MdBarChart,
 } from "react-icons/md";
 import Card from "components/card";
@@ -12,6 +10,17 @@ import { DataWrapperForViz } from "utils/utils";
 import React from "react";
 import CheckTable from "./CheckTable";
 
+/*
+    Line graph for displaying metrics.
+    
+    Uses ApexCharts internally.
+    title: string - title of chart
+    metricName: string - name of metric
+    metricData: any - data to display
+    currentMetric: any - current metric
+    customTags: string[] - custom tags to display
+    metricColumns: string[] - columns to display, other columns are ignored.
+*/
 export default function TimelyLineGraphs(props: { 
     title: string;
     metricName: string;
@@ -26,9 +35,9 @@ export default function TimelyLineGraphs(props: {
 
     const lastScore = currentMetric ? currentMetric[1] : "N/A"
 
+    // Togglable detail mode.
     const [detailMode, setDetailMode] = React.useState(false);
 
-    // console.log("metricData = " + JSON.stringify(metricData))
     const selectData = []
     for (let i = 0; i < metricData.length; i++) {
         const metric = metricData[i]
@@ -39,7 +48,6 @@ export default function TimelyLineGraphs(props: {
     console.log("metricData = " + JSON.stringify(selectData))
     
     const lineData = DataWrapperForViz.wrapDataForLine(selectData)
-    // const detailData = DataWrapperForViz.wrapDataForDetail(metricData, customTags)
     
 return (
     <Card extra="!p-[20px] text-center">

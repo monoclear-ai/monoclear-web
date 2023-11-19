@@ -1,5 +1,16 @@
 import Card from "components/card";
 
+/*
+  Widget component.
+
+  Displays a widget with an icon, title, and subtitle.
+  Subtitle is displayed as a large text.
+
+  Options:
+    icon: JSX.Element - icon
+    title: string - title
+    subtitle: string - subtitle
+*/
 export default function Widget(props: {
   icon: JSX.Element;
   title: string;

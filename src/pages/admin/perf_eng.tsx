@@ -5,6 +5,12 @@ import beta from "assets/img/beta/monoclear_beta.jpg";
 import BetaModal from "components/beta";
 import Image from "next/image";
 
+/*
+  English Performance Dashboard page.
+
+  Beta signup is enabled by default.
+  Review Korean version (PerfKoDashboard) for eventual release.
+*/
 export default function PerfEnDashboard() {
   const { isOpen: isBetaOpen, onOpen: onBetaOpen, onClose: onBetaClose } = useDisclosure({ defaultIsOpen: true});
 

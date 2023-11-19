@@ -24,6 +24,11 @@ import { AiFillTag } from "react-icons/ai";
 /*
   Modal for HuggingFace Model registration.
   Related modal : BYOModal
+
+  Options:
+    isHFOpen : boolean - whether HF modal is open
+    onHFOpen : () => void - function to open HF modal
+    onHFClose : () => void - function to close HF modal
 */
 const HFModal = (props: {
     isHFOpen : boolean;
@@ -84,7 +89,7 @@ const HFModal = (props: {
             console.log(session)
             if (data["status"] == "success") {
                 setTested(true)
-                setTestLog("성공하였습니다.")
+                setTestLog("Success.")
             } else {
                 setTestLog("Error: " + data["message"])
                 setTested(false)
@@ -114,8 +119,8 @@ const HFModal = (props: {
               <Card extra="px-[30px] pt-[35px] pb-[40px] max-w-[450px] flex flex-col !z-[1004]">
                 <h1 className="mb-[20px] text-2xl font-bold">(BETA) Register HuggingFace Model</h1>
                 <p className="mb-2">
-                  모델 크기에 따라 평가에 시간이 소요될 수 있습니다 (1일이상).<br/>
-                  빠른 평가가 필요할 경우 커스텀 모델 API를 추천드립니다.
+                  Evaluation may require up to a day depending on model size.<br/>
+                  If fast evaluation is required, we recommand custom model API.
                 </p>
                   
                 <div className="font-bold">
@@ -156,7 +161,7 @@ const HFModal = (props: {
                   </p>
                   <input
                     type="text"
-                    placeholder="공개 유저명"
+                    placeholder="Public Username"
                     value={name}
                     className="block h-full w-full -mr-5 rounded-full bg-lightPrimary text-sm font-medium text-navy-700 outline-none placeholder:!text-gray-400 dark:bg-navy-900 dark:text-white dark:placeholder:!text-white sm:w-fit"
                     onChange={e => setName(e.target.value)}

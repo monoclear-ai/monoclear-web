@@ -1,5 +1,5 @@
 /*
-  Footer for rights information.
+  Footer for rights information and links to terms of service and support.
 */
 const Footer = () => {
   return (
