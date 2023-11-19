@@ -7,7 +7,7 @@ from util import time_log
 import boto3
 
 class db_ranking(db_base):
-    """Class for ranking models. (Leaderboard)"""
+    """Class for ranking entities. (Leaderboard)"""
     @classmethod
     def init(cls):
         cls.db = boto3.resource('dynamodb',

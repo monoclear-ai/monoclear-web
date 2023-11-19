@@ -16,7 +16,7 @@ import boto3
 # 7. (TODO) Custom eval score history
 # 8. (TODO) Custom eval mistakes history (editable)
 class db_evals(db_base):
-    """Class for evaluation models."""
+    """Class for evaluation entities."""
     @classmethod
     def init(cls):
         cls.db = boto3.resource('dynamodb',

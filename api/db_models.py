@@ -6,7 +6,7 @@ from util import time_log
 import boto3
 
 class db_models(db_base):
-    """Class for ML models."""
+    """Class for ML model entities."""
     @classmethod
     def init(cls):
         cls.db = boto3.resource('dynamodb',

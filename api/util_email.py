@@ -4,13 +4,13 @@ import os
 from dotenv import load_dotenv
 from pathlib import Path
 
+from constants import AWS_REGION
+
 dotenv_path = Path('../.env')
 load_dotenv(dotenv_path=dotenv_path)
 
 
 SENDER = f"Monoclear <{os.getenv('EMAIL_FROM')}>"
-
-AWS_REGION = os.getenv('SERVER_AWS_REGION') 
 
 # The character encoding for the email.
 CHARSET = "UTF-8"
